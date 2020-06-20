@@ -41,7 +41,7 @@ public class DockerRestController {
 	        Date date = new Date();
 	        sd.setTimeZone(TimeZone.getTimeZone("IST"));
 		
-		return exchangeResponse.getBody().toString() + "\n\nMade Request at - " + sd.format(date);
+		return exchangeResponse.getBody().toString() + "\n\nRequest made at - " + sd.format(date);
 	}
 	
 }
