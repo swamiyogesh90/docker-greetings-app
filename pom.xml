@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.docker.example</groupId>
-	<artifactId>docker-example</artifactId>
+	<artifactId>docker-greetings-app</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>docker-example</name>
+	<name>docker-greetings-app</name>
 	<description>Demo project for Spring Boot</description>
 
 	<properties>
