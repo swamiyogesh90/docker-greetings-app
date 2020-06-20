@@ -27,7 +27,7 @@ public class DockerRestController {
 	public String displayName(@PathParam("name") String name) {
 		
 		HttpEntity<String> requestEntity = null;
-		String URL = "http://displayNameApp:8080/displayName?name=" + name;
+		String URL = "http://displayNameApp:8085/displayName?name=" + name;
 		URI url = null;
 		try {
 			url = new URI(URL);
