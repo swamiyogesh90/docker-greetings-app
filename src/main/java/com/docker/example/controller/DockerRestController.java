@@ -2,9 +2,9 @@ package com.docker.example.controller;
 
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.TimeZone;
 
 import javax.websocket.server.PathParam;
 
@@ -37,10 +37,11 @@ public class DockerRestController {
 		
 		ResponseEntity<String> exchangeResponse = restTemplate.exchange(url, HttpMethod.GET, requestEntity, String.class);
 		
-		DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
-		Date date = new Date();
+		SimpleDateFormat sd = new SimpleDateFormat("dd/mm/yyyy 'at' HH:mm:ss z");
+	        Date date = new Date();
+	        sd.setTimeZone(TimeZone.getTimeZone("IST"));
 		
-		return exchangeResponse.getBody().toString() + "\n\n" + dateFormat.format(date);
+		return exchangeResponse.getBody().toString() + "\n\nMade Request at - " + sd.format(date);
 	}
-
+	
 }
