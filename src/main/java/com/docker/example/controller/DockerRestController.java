@@ -9,6 +9,7 @@ import java.util.TimeZone;
 import javax.websocket.server.PathParam;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.env.Environment;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
@@ -21,13 +22,20 @@ import org.springframework.web.client.RestTemplate;
 public class DockerRestController {
 	
 	@Autowired
+    private Environment env;
+	
+	@Autowired
 	RestTemplate restTemplate;
 	
 	@RequestMapping(value="/greetings", method=RequestMethod.GET)
 	public String displayName(@PathParam("name") String name) {
 		
 		HttpEntity<String> requestEntity = null;
-		String URL = "http://displayNameApp:8085/displayName?name=" + name;
+		
+		String displayNameAppHost = env.getProperty("DISPLAYNAME_APP_NAME");
+		String displayNameAppPort = env.getProperty("DISPLAYNAME_APP_PORT");
+		
+		String URL = "http://"+ displayNameAppHost + ":" + displayNameAppPort + "/displayName?name=" + name;
 		URI url = null;
 		try {
 			url = new URI(URL);
